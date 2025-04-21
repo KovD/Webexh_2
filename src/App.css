@@ -1,0 +1,135 @@
+
+.main-nav {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  .logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .nav-link {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    color: white;
+    background: rgba(255,255,255,0.1);
+  }
+  
+  .nav-link.active {
+    color: white;
+    background: rgba(255,255,255,0.2);
+  }
+  
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+  }
+  
+  .main-content {
+    margin-top: 80px;
+    padding: 20px;
+    min-height: calc(100vh - 120px);
+  }
+  
+  @media (max-width: 768px) {
+    .nav-content {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 10px;
+    }
+  
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+  
+    .nav-link {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .main-content {
+      margin-top: 120px;
+    }
+  }
+
+  .nav-link.logout-btn {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  
+  .nav-link.logout-btn:hover {
+    color: white;
+    background: rgba(255,255,255,0.1);
+  }
+  
+  .nav-link.logout-btn.active {
+    color: white;
+    background: rgba(255,255,255,0.2);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
