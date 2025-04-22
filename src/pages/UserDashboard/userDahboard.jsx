@@ -40,13 +40,15 @@ const UserDashboard = () => {
       setIsEntering(false);
       
       setTimeout(() => {
-        setCurrentGrillIndex(prev => (prev + 1) % grills.length);
+        setGrills(prevGrills => prevGrills.filter(grill => grill._id !== grillId));
+        setCurrentGrillIndex(0);
         setAnimationDirection(null);
         setIsEntering(true);
       }, 300);
     } catch (error) {
       console.error('Error toggling like:', error);
     }
+    
   };
 
   const handleSkip = () => {

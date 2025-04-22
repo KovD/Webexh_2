@@ -61,6 +61,7 @@ app.post('/api/register', async (req, res) => {
   try {
     const user = new User(req.body);
     user.admin = false
+    console.log(user)
     
     if (user.role === 'restaurant' && (!user.restaurantName || !user.address)) {
       return res.status(400).json({ message: 'Restaurant name and address are required' });
@@ -135,19 +136,25 @@ app.post('/api/login', async (req, res) => {
     }
     });
 
-  app.get('/api/grills', auth, async (req, res) => {
-    try {
-      const grills = await Grill.find();
-      const user = await User.findById(req.userData.userId);
-      const response = grills.map(grill => ({
-        ...grill.toObject(),
-        isLiked: user.likedGrills.includes(grill._id)
-      }));
-      res.json(response);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  });
+    app.get('/api/grills', auth, async (req, res) => {
+      try {
+        const grills = await Grill.find();
+        const user = await User.findById(req.userData.userId);
+    
+        const unlikedGrills = grills.filter(grill => 
+          !user.likedGrills.includes(grill._id)
+        );
+    
+        const response = unlikedGrills.map(grill => ({
+          ...grill.toObject(),
+          isLiked: false
+        }));
+        console.log('Grills:', response);
+        res.json(response);
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
+    });
   
   app.post('/api/grills/:id/like', auth, async (req, res) => {
     try {
@@ -161,7 +168,6 @@ app.post('/api/login', async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
       }
 
-      console.log(user, grill)
   
       const grillIdStr = grill._id.toString();
       const index = user.likedGrills.findIndex(id => id.toString() === grillIdStr);

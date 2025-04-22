@@ -35,7 +35,7 @@ const Registration = () => {
       <div className="registration-card">
         <h1 className="registration-title">Create Account 🍔</h1>
         <form onSubmit={handleSubmit} className="registration-form">
-          <div className="input-group">
+          {/* <div className="input-group">
             <label htmlFor="role">Account Type</label>
             <select
               id="role"
@@ -46,7 +46,7 @@ const Registration = () => {
               <option value="user">Food Lover</option>
               <option value="restaurant">Restaurant Owner</option>
             </select>
-          </div>
+          </div> */}
 
           <div className="input-group">
             <label htmlFor="name">{formData.role === 'user' ? 'Your Name' : 'Owner Name'}</label>
